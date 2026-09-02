@@ -6,18 +6,21 @@ function ListaClientes() {
             id: 1,
             nome: 'Ana Souza',
             cpf: '12345678901',
+            telefone: '11-998764231',
             email: 'ana@email.com',
         },
         {
             id: 2,
             nome: 'Bruno Lima',
             cpf: '23456789012',
+            telefone: '11-985497621',
             email: 'bruno@email.com',
         },
         {
             id: 3,
             nome: 'Carla Mendes',
             cpf: '34567890123',
+            telefone: '11-974312598',
             email: 'carla@email.com',
         },
     ]
