@@ -38,6 +38,7 @@ function App() {
       descricao: 'Registre e consulte as vendas realizadas.',
     },
   ])
+  
   return (
     <Routes>
       <Route
