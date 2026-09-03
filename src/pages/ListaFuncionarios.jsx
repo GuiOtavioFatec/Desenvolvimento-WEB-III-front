@@ -32,6 +32,7 @@ function ListaFuncionarios() {
                     <li key={funcionario.id}>
                         <strong>{funcionario.nome}</strong>
                         <span>CPF: {funcionario.cpf}</span>
+                        <span>Telefone: {funcionario.telefone}</span>
                         <span>E-mail: {funcionario.email}</span>
                     </li>
                 ))}

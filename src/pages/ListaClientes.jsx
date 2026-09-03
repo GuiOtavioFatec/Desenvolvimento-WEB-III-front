@@ -32,6 +32,7 @@ function ListaClientes() {
                     <li key={cliente.id}>
                         <strong>{cliente.nome}</strong>
                         <span>CPF: {cliente.cpf}</span>
+                        <span>Telefone: {cliente.telefone}</span>
                         <span>E-mail: {cliente.email}</span>
                     </li>
                 ))}
