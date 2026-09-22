@@ -3,14 +3,20 @@ import { Routes, Route } from 'react-router'
 import './App.css'
 import Cabecalho from './components/Cabecalho'
 import CardModulo from './components/CardModulo'
+
+//clientes
 import Clientes from './pages/Clientes'
 import ListaClientes from './pages/ListaClientes'
 import CadastroCliente from './pages/CadastroCliente'
+import clientesIniciais from './data/clientes'
+import EditarCliente from './pages/EditarCliente'
+
+//funcionarios
 import Funcionarios from './pages/Funcionarios'
 import ListaFuncionarios from './pages/ListaFuncionarios'
 import CadastroFuncionario from './pages/CadastroFuncionario'
-import clientesIniciais from './data/clientes'
-import EditarCliente from './pages/EditarCliente'
+import funcionariosIniciais from './data/funcionarios'
+import EditarFuncionario from './pages/EditarFuncionario'
 
 function App() {
   const [mostrarModulos, setMostrarModulos] = useState(true)
@@ -64,6 +70,34 @@ function alterarCliente(clienteAtualizado) {
       cliente.id === clienteAtualizado.id
         ? clienteAtualizado
         : cliente
+    )
+  )
+}
+
+  const [funcionarios, setFuncionarios] = useState(funcionariosIniciais)
+  
+  function adicionarFuncionario(novoFuncionario) {
+  const funcionarioComId = {
+    id: Date.now(),
+    ...novoFuncionario,
+  }
+
+  setFuncionarios((listaAtual) => [
+    ...listaAtual,
+    funcionarioComId,
+  ])
+}
+function excluirFuncionario(id) {
+  setFuncionarios((listaAtual) =>
+    listaAtual.filter((funcionario) => funcionario.id !== id)
+  )
+}
+function alterarFuncionario(funcionarioAtualizado) {
+  setFuncionarios((listaAtual) =>
+    listaAtual.map((funcionario) =>
+      funcionario.id === funcionarioAtualizado.id
+        ? funcionarioAtualizado
+        : funcionario
     )
   )
 }
@@ -130,15 +164,28 @@ function alterarCliente(clienteAtualizado) {
       aoAlterar={alterarCliente}
     />
   }
-/><Route path="/funcionarios" element={<Funcionarios />} />
+/>
+
+<Route path="/funcionarios" element={<Funcionarios />} />
       <Route
         path="/funcionarios/listar"
-        element={<ListaFuncionarios />}
+        element={<ListaFuncionarios funcionarios={funcionarios}
+        aoExcluir={excluirFuncionario}/>}
       />
       <Route
         path="/funcionario/cadastrar"
-        element={<CadastroFuncionario />}
+        element={<CadastroFuncionario funcionarios={funcionarios}
+        aoCadastrar={adicionarFuncionario}/>}
       />
+      <Route
+  path="/funcionarios/editar/:id"
+  element={
+    <EditarFuncionario
+      funcionarios={funcionarios}
+      aoAlterar={alterarFuncionario}
+    />
+  }
+/>
     
     </Routes>
   )
